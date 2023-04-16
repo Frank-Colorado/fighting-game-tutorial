@@ -7,9 +7,9 @@ const victorySound = document.getElementById("victory");
 
 // This is a class called 'Player'
 class Player {
-  constructor(health = 100, attackDmg) {
-    this.health = health;
+  constructor(attackDmg = 100, health = 100) {
     this.attackDmg = attackDmg;
+    this.health = health;
   }
 
   // This is a method that will cause the player to heal
@@ -21,3 +21,6 @@ class Player {
     // user strikes target for x amount
   }
 }
+
+const player1 = new Player();
+const player2 = new Player();

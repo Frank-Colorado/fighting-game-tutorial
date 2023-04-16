@@ -5,15 +5,19 @@ const p2AttackSound = document.getElementById("p2attack");
 const p2HealSound = document.getElementById("p2heal");
 const victorySound = document.getElementById("victory");
 // DOM elements
+const p1NameDisplay = document.getElementById("p1Name");
 const p1HealthDisplay = document.getElementById("p1Health");
+const p2NameDisplay = document.getElementById("p2Name");
 const p2HealthDisplay = document.getElementById("p2Health");
+const resultDisplay = document.getElementById("result");
 // Buttons
 const playBtn = document.getElementById("play");
 
 //
 // This is a class called 'Player'
 class Player {
-  constructor(attackDmg = 100, health = 100) {
+  constructor(name, attackDmg = 25, health = 100) {
+    this.name = name;
     this.attackDmg = attackDmg;
     this.health = health;
   }
@@ -28,5 +32,27 @@ class Player {
   }
 }
 
+// Player Variables
 const player1 = new Player();
 const player2 = new Player();
+
+// Player Input
+
+document.addEventListener("keydown", function (e) {
+  switch (e.key) {
+    case "q":
+      console.log(player1.attackDmg);
+      break;
+    case "a":
+      console.log(player1.health);
+      break;
+    case "p":
+      console.log(player2.attackDmg);
+      break;
+    case "l":
+      console.log(player2.health);
+      break;
+    default:
+      console.log("NOT A KEY");
+  }
+});

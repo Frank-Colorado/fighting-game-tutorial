@@ -22,9 +22,12 @@ class Player {
     this.health = health;
   }
 
-  // This is a method that will cause the player to heal
-  heal(target) {
-    // heals target for x amount
+  // This is a method that will cause the player to heal a random amount between 1-5
+  heal() {
+    // gets random number between 1-5
+    const healAmount = Math.ceil(Math.random() * 5);
+    // heals self for x amount
+    this.health += healAmount;
   }
   // This is a method that will cause the player to hit the target
   strike(target, user, dmgAmount) {
@@ -44,13 +47,15 @@ document.addEventListener("keydown", function (e) {
       console.log(player1.attackDmg);
       break;
     case "a":
-      console.log(player1.health);
+      player1.heal();
+      p1HealthDisplay.innerText = player1.health;
       break;
     case "p":
       console.log(player2.attackDmg);
       break;
     case "l":
-      console.log(player2.health);
+      player2.heal();
+      p2HealthDisplay.innerText = player2.health;
       break;
     default:
       console.log("NOT A KEY");

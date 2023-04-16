@@ -14,6 +14,7 @@ const resultDisplay = document.getElementById("result");
 const playBtn = document.getElementById("play");
 
 //
+
 const updateGameDisplay = (winner, loser) => {
   if (loser.health <= 0) {
     // if (target.health - totalDmg <= 0) {
@@ -30,6 +31,19 @@ const updateGameDisplay = (winner, loser) => {
   p1HealthDisplay.innerText = player1.health;
   p2HealthDisplay.innerText = player2.health;
 };
+
+// This is a class called 'Game'
+class Game {
+  constructor() {
+    this.gameOver = false;
+  }
+
+  // This is a method that will simulate a game between 2 players
+  play() {}
+
+  // This is a method that will reset that game state back to its start
+  reset() {}
+}
 
 // This is a class called 'Player'
 class Player {
@@ -56,6 +70,9 @@ class Player {
     updateGameDisplay(this, target);
   }
 }
+
+// Game variable
+const game = new Game();
 
 // Player Variables
 const player1 = new Player("player 1");

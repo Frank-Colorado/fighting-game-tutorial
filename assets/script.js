@@ -14,6 +14,23 @@ const resultDisplay = document.getElementById("result");
 const playBtn = document.getElementById("play");
 
 //
+const updateGameDisplay = (winner, loser) => {
+  if (loser.health <= 0) {
+    // if (target.health - totalDmg <= 0) {
+    //   target.health = 0;
+    //   resultDisplay.innerText = `${target.name} has run out of HP! ${this.name} is the winner!`;
+    // } else {
+    //   target.health -= totalDmg;
+    // }
+    loser.health = 0;
+    p1HealthDisplay.innerText = player1.health;
+    p2HealthDisplay.innerText = player2.health;
+    resultDisplay.innerText = `${loser.name} has run out of HP! ${winner.name} is the winner!`;
+  }
+  p1HealthDisplay.innerText = player1.health;
+  p2HealthDisplay.innerText = player2.health;
+};
+
 // This is a class called 'Player'
 class Player {
   constructor(name, baseDmg = 10, health = 100) {
@@ -35,12 +52,8 @@ class Player {
     const bonusDmg = Math.ceil(Math.random() * 10);
     const totalDmg = this.baseDmg + bonusDmg;
     // user strikes target for x amount
-    if (target.health - totalDmg <= 0) {
-      target.health = 0;
-      resultDisplay.innerText = `${target.name} has run out of HP! ${this.name} is the winner!`;
-    } else {
-      target.health -= totalDmg;
-    }
+    target.health -= totalDmg;
+    updateGameDisplay(this, target);
   }
 }
 
@@ -49,28 +62,23 @@ const player1 = new Player("player 1");
 const player2 = new Player("player 2");
 
 // Player Input
-
 document.addEventListener("keydown", function (e) {
   switch (e.key) {
     case "q":
       p1AttackSound.play();
       player1.strike(player2);
-      p2HealthDisplay.innerText = player2.health;
       break;
     case "a":
       p1HealSound.play();
       player1.heal();
-      p1HealthDisplay.innerText = player1.health;
       break;
     case "p":
       p2AttackSound.play();
       player2.strike(player1);
-      p1HealthDisplay.innerText = player1.health;
       break;
     case "l":
       p2HealSound.play();
       player2.heal();
-      p2HealthDisplay.innerText = player2.health;
       break;
     default:
       console.log("NOT A KEY");

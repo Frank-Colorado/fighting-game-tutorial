@@ -4,6 +4,9 @@ const p1HealSound = document.getElementById("p1heal");
 const p2AttackSound = document.getElementById("p2attack");
 const p2HealSound = document.getElementById("p2heal");
 const victorySound = document.getElementById("victory");
+// DOM elements
+const p1HealthDisplay = document.getElementById("p1Health");
+const p2HealthDisplay = document.getElementById("p2Health");
 
 // This is a class called 'Player'
 class Player {

@@ -16,9 +16,9 @@ const playBtn = document.getElementById("play");
 //
 // This is a class called 'Player'
 class Player {
-  constructor(name, attackDmg = 25, health = 100) {
+  constructor(name, baseDmg = 10, health = 100) {
     this.name = name;
-    this.attackDmg = attackDmg;
+    this.baseDmg = baseDmg;
     this.health = health;
   }
 
@@ -29,29 +29,35 @@ class Player {
     // heals self for x amount
     this.health += healAmount;
   }
-  // This is a method that will cause the player to hit the target
-  strike(target, user, dmgAmount) {
+  // This is a method that will cause the player to hit the target for the baseDmg plus a random amount between 1-10
+  strike(target) {
+    // gets a random number between 1-10
+    const bonusDmg = Math.ceil(Math.random() * 10);
+    const totalDmg = this.baseDmg + bonusDmg;
     // user strikes target for x amount
+    target.health -= totalDmg;
   }
 }
 
 // Player Variables
-const player1 = new Player();
-const player2 = new Player();
+const player1 = new Player("Ying");
+const player2 = new Player("Yang");
 
 // Player Input
 
 document.addEventListener("keydown", function (e) {
   switch (e.key) {
     case "q":
-      console.log(player1.attackDmg);
+      player1.strike(player2);
+      p2HealthDisplay.innerText = player2.health;
       break;
     case "a":
       player1.heal();
       p1HealthDisplay.innerText = player1.health;
       break;
     case "p":
-      console.log(player2.attackDmg);
+      player2.strike(player1);
+      p1HealthDisplay.innerText = player1.health;
       break;
     case "l":
       player2.heal();

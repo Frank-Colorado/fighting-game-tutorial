@@ -45,26 +45,30 @@ class Player {
 }
 
 // Player Variables
-const player1 = new Player("p1");
-const player2 = new Player("p2");
+const player1 = new Player("player 1");
+const player2 = new Player("player 2");
 
 // Player Input
 
 document.addEventListener("keydown", function (e) {
   switch (e.key) {
     case "q":
+      p1AttackSound.play();
       player1.strike(player2);
       p2HealthDisplay.innerText = player2.health;
       break;
     case "a":
+      p1HealSound.play();
       player1.heal();
       p1HealthDisplay.innerText = player1.health;
       break;
     case "p":
+      p2AttackSound.play();
       player2.strike(player1);
       p1HealthDisplay.innerText = player1.health;
       break;
     case "l":
+      p2HealSound.play();
       player2.heal();
       p2HealthDisplay.innerText = player2.health;
       break;

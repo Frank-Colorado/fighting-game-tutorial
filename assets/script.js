@@ -35,13 +35,18 @@ class Player {
     const bonusDmg = Math.ceil(Math.random() * 10);
     const totalDmg = this.baseDmg + bonusDmg;
     // user strikes target for x amount
-    target.health -= totalDmg;
+    if (target.health - totalDmg <= 0) {
+      target.health = 0;
+      resultDisplay.innerText = `${target.name} has run out of HP! ${this.name} is the winner!`;
+    } else {
+      target.health -= totalDmg;
+    }
   }
 }
 
 // Player Variables
-const player1 = new Player("Ying");
-const player2 = new Player("Yang");
+const player1 = new Player("p1");
+const player2 = new Player("p2");
 
 // Player Input
 

@@ -17,12 +17,9 @@ const playBtn = document.getElementById("play");
 
 const updateGameDisplay = (winner, loser) => {
   if (loser.health <= 0) {
-    // if (target.health - totalDmg <= 0) {
-    //   target.health = 0;
-    //   resultDisplay.innerText = `${target.name} has run out of HP! ${this.name} is the winner!`;
-    // } else {
-    //   target.health -= totalDmg;
-    // }
+    game.gameOver = true;
+    console.log(typeof game.gameOver);
+    console.log(game.gameOver);
     loser.health = 0;
     p1HealthDisplay.innerText = player1.health;
     p2HealthDisplay.innerText = player2.health;
@@ -54,11 +51,12 @@ class Player {
   }
 
   // This is a method that will cause the player to heal a random amount between 1-5
-  heal() {
+  heal(opponent) {
     // gets random number between 1-5
     const healAmount = Math.ceil(Math.random() * 5);
     // heals self for x amount
     this.health += healAmount;
+    updateGameDisplay(this, opponent);
   }
   // This is a method that will cause the player to hit the target for the baseDmg plus a random amount between 1-10
   strike(target) {
@@ -79,25 +77,29 @@ const player1 = new Player("player 1");
 const player2 = new Player("player 2");
 
 // Player Input
+
 document.addEventListener("keydown", function (e) {
-  switch (e.key) {
-    case "q":
-      p1AttackSound.play();
-      player1.strike(player2);
-      break;
-    case "a":
-      p1HealSound.play();
-      player1.heal();
-      break;
-    case "p":
-      p2AttackSound.play();
-      player2.strike(player1);
-      break;
-    case "l":
-      p2HealSound.play();
-      player2.heal();
-      break;
-    default:
-      console.log("NOT A KEY");
+  if (!game.gameOver) {
+    switch (e.key) {
+      case "q":
+        p1AttackSound.play();
+        player1.strike(player2);
+        console.log(game.gameOver);
+        break;
+      case "a":
+        p1HealSound.play();
+        player1.heal(player2);
+        break;
+      case "p":
+        p2AttackSound.play();
+        player2.strike(player1);
+        break;
+      case "l":
+        p2HealSound.play();
+        player2.heal(player1);
+        break;
+      default:
+        console.log("NOT A KEY");
+    }
   }
 });

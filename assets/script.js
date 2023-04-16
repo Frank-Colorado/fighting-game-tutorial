@@ -7,7 +7,10 @@ const victorySound = document.getElementById("victory");
 // DOM elements
 const p1HealthDisplay = document.getElementById("p1Health");
 const p2HealthDisplay = document.getElementById("p2Health");
+// Buttons
+const playBtn = document.getElementById("play");
 
+//
 // This is a class called 'Player'
 class Player {
   constructor(attackDmg = 100, health = 100) {

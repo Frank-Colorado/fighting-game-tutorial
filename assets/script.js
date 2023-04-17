@@ -18,8 +18,6 @@ const playBtn = document.getElementById("play");
 const updateGameDisplay = (winner, loser) => {
   if (loser.health <= 0) {
     game.gameOver = true;
-    console.log(typeof game.gameOver);
-    console.log(game.gameOver);
     loser.health = 0;
     p1HealthDisplay.innerText = player1.health;
     p2HealthDisplay.innerText = player2.health;
@@ -49,7 +47,6 @@ class Player {
     this.baseDmg = baseDmg;
     this.health = health;
   }
-
   // This is a method that will cause the player to heal a random amount between 1-5
   heal(opponent) {
     // gets random number between 1-5
@@ -84,7 +81,6 @@ document.addEventListener("keydown", function (e) {
       case "q":
         p1AttackSound.play();
         player1.strike(player2);
-        console.log(game.gameOver);
         break;
       case "a":
         p1HealSound.play();

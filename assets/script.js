@@ -22,6 +22,7 @@ const updateGameDisplay = (winner, loser) => {
     p1HealthDisplay.innerText = player1.health;
     p2HealthDisplay.innerText = player2.health;
     resultDisplay.innerText = `${loser.name} has run out of HP! ${winner.name} is the winner!`;
+    victorySound.play();
   }
   p1HealthDisplay.innerText = player1.health;
   p2HealthDisplay.innerText = player2.health;
@@ -37,7 +38,13 @@ class Game {
   play() {}
 
   // This is a method that will reset that game state back to its start
-  reset() {}
+  reset() {
+    game.gameOver = false;
+    player1.health = 100;
+    player2.health = 100;
+    resultDisplay.innerText = "";
+    updateGameDisplay(player1, player2);
+  }
 }
 
 // This is a class called 'Player'

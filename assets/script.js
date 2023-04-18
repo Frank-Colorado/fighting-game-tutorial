@@ -13,8 +13,7 @@ const resultDisplay = document.getElementById("result");
 // Buttons
 const playBtn = document.getElementById("play");
 
-//
-
+// This is a function that updates the DOM's Display
 const updateGameDisplay = (winner, loser) => {
   if (loser.health <= 0) {
     game.gameOver = true;
@@ -28,6 +27,12 @@ const updateGameDisplay = (winner, loser) => {
   p2HealthDisplay.innerText = player2.health;
 };
 
+// Random choice function
+const randomChoice = () => {
+  choice = Math.floor(Math.random() * 2);
+  return choice;
+};
+
 // This is a class called 'Game'
 class Game {
   constructor() {
@@ -35,7 +40,27 @@ class Game {
   }
 
   // This is a method that will simulate a game between 2 players
-  play() {}
+  play() {
+    game.reset();
+    while (!game.gameOver) {
+      const p1Choice = randomChoice();
+      const p2Choice = randomChoice();
+      if (p1Choice === 0) {
+        p1AttackSound.play();
+        player1.strike(player2);
+      } else {
+        p1HealSound.play();
+        player1.heal(player2);
+      }
+      if (p2Choice === 0) {
+        p2AttackSound.play();
+        player2.strike(player1);
+      } else {
+        p2HealSound.play();
+        player2.heal(player1);
+      }
+    }
+  }
 
   // This is a method that will reset that game state back to its start
   reset() {
